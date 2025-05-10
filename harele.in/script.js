@@ -31,14 +31,14 @@ const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
-        
-        // Get form data
+        const form = e.target;
+
         const formData = {
-            name: this.querySelector('input[type="text"]').value,
-            email: this.querySelector('input[type="email"]').value,
-            phone: this.querySelector('input[type="tel"]').value,
-            product: this.querySelector('select').value,
-            message: this.querySelector('textarea').value
+            name: form.querySelector('input[type="text"]').value,
+            email: form.querySelector('input[type="email"]').value,
+            phone: form.querySelector('input[type="tel"]').value,
+            product: form.querySelector('select').value,
+            message: form.querySelector('textarea').value
         };
 
         try {
@@ -54,7 +54,7 @@ if (contactForm) {
 
             if (response.ok) {
                 alert('Thank you for your message! We will get back to you soon.');
-                this.reset();
+                form.reset();
             } else {
                 throw new Error(data.error || 'Failed to send message');
             }
@@ -64,6 +64,7 @@ if (contactForm) {
         }
     });
 }
+
 
 // Scroll Animation for Elements
 const observerOptions = {
